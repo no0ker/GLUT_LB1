@@ -1,64 +1,80 @@
-#include "GL/glut.h"
-#include <stdio.h>
-#include <iostream>
-#include <locale>
+#include <gl/glut.h>
+#include <stdlib.h>
+#include "Polygon.h"
+#include "Line.h"
 
-#define WINDOW_WIDTH 300
-#define WINDOW_HEIGHT 300
-#define WINDOW_TOP 0
-#define WINDOW_LEFT 300
-#define WINDOW_TITLE "LB #1"
+int window_width = 500;
+int window_height = 250;
+
+Polygon polygon;
+Line line;
 
 
-void init(){
+/* эта функция управляет всем выводом на экран */
+void display(void){
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(1,1,1,1);
+	
+	polygon.draw();
+	//glFinish();
+	
+	line.draw();
+	/*
+	glBegin(GL_LINES);
+		glColor3f(1.0, 1.0, 0); 	
+		glVertex2d(0, 0);
+		glVertex2d(50, 50);
+	glEnd();*/
+	glFinish();
+}
+
+/* Функция вызывается при изменении размеров окна */
+void reshape(GLint w, GLint h)
+{
+	window_width = w;
+	window_height = h;
+
+    /* устанавливаем размеры области отображения */
+    glViewport(0, 0, w, h);
+
+    /* ортографическая проекция */
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-200.0, 200.0, -200.0, 200.0, -5.0, 5.0);
+    glOrtho(0, w, 0, h, -1.0, 1.0);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(1,1,1,1);
 }
 
-void renderLine(){
-	glClearColor(0.25, 0, 0.25, 1.0);
-	glClear(GL_COLOR_BUFFER_BIT);
 
-	glBegin(GL_LINES);
-		glColor3f(0.0, 0.0, 0.0);   /* красный */
-		glVertex3f(0.0, 0.0, 0.0); 
-		glColor3f(0.0, 0.5, 0.0);   /* красный */
-		glVertex3f(1, 1, 0); 
-	glEnd();
+void mouse(int button, int state, int ax, int ay){
+	if(button == GLUT_LEFT_BUTTON && state == GLUT_UP){
+		polygon.addPoint(ax, window_height - ay);
+	}
+	if(button == GLUT_RIGHT_BUTTON && state == GLUT_UP){
+		line.set_point(ax, window_height - ay);
+	}
 
-	glutSwapBuffers();
+	display();
 }
 
-void renderScene(void) {
-	glClearColor(0.25, 0, 0.25, 1.0);
-	glClear(GL_COLOR_BUFFER_BIT);
+/* Главный цикл приложения */
+int main(int argc, char *argv[]){
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_RGB);
+    glutInitWindowSize(window_width, window_height);
+	glutInitWindowPosition(100,100);
+	
+	glutCreateWindow("LB #1");
 
-	glBegin(GL_TRIANGLES);
-		glVertex3f(-0.5,-0.5,0.0);
-		glVertex3f(0.0,0.5,0.0);
-		glVertex3f(0.5,-0.5,0.0);
-	glEnd();
- 
-	glutSwapBuffers();
-}
+    glutDisplayFunc(display);
+	glutMouseFunc(mouse);
+    glutReshapeFunc(reshape);
 
-int main(int argc,char** argv)
-{
-	// инициал
-	glutInit (&argc, argv);
-	glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-	glutInitWindowPosition (WINDOW_LEFT, WINDOW_TOP);
-	init();
-	//iniitialize();
-	glutCreateWindow (WINDOW_TITLE);
-	//glutReshapeFunc (reshape);
-	//glutMouseFunc(mouse);
-	glutDisplayFunc(renderLine);
-	//glutKeyboardFunc(keyboard);
+    glutMainLoop();
 
-	glutMainLoop();
-	//getchar();
 	return 0;
 }
