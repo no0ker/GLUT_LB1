@@ -7,9 +7,11 @@ public:
 	~Line(void);
 	void set_point(int x, int y);
 	void draw(void);
-private:
 	Point point_from;
 	Point point_to;
+	Point cropped_point_from;
+	Point cropped_point_to;
+private:
 	short flag;
 };
 

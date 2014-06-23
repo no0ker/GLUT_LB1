@@ -30,5 +30,10 @@ void Line::draw(){
 		glColor3f(1.0, 1.0, 0); 
 		glVertex2d(point_from.x, point_from.y);
 		glVertex2d(point_to.x, point_to.y);
+
+		glColor3f(0.3, 1.0, 0.3);
+		glVertex2f(cropped_point_from.x, cropped_point_from.y);
+		glColor3f(0.3, 1.0, 0.3);
+		glVertex2f(cropped_point_to.x, cropped_point_to.y);
 	glEnd();
 }

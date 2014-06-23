@@ -9,16 +9,19 @@ int window_height = 250;
 Polygon polygon;
 Line line;
 
+int tmp = 0;
+
 
 /* эта функция управляет всем выводом на экран */
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(1,1,1,1);
 	
+	line.draw();
 	polygon.draw();
 	//glFinish();
 	
-	line.draw();
+	
 	/*
 	glBegin(GL_LINES);
 		glColor3f(1.0, 1.0, 0); 	
@@ -45,20 +48,21 @@ void reshape(GLint w, GLint h)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(1,1,1,1);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glClearColor(1,1,1,1);
 }
 
 
 void mouse(int button, int state, int ax, int ay){
 	if(button == GLUT_LEFT_BUTTON && state == GLUT_UP){
 		polygon.addPoint(ax, window_height - ay);
+		display();
 	}
 	if(button == GLUT_RIGHT_BUTTON && state == GLUT_UP){
 		line.set_point(ax, window_height - ay);
+		polygon.CB(&line);
+		display();
 	}
-
-	display();
 }
 
 /* Главный цикл приложения */
