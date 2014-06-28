@@ -1,12 +1,15 @@
 #include <gl/glut.h>
 #include <stdlib.h>
+#include <iostream>
 #include "Polygon.h"
 #include "Line.h"
+#include "Square.h"
 
 int window_width = 500;
 int window_height = 250;
 
 Polygon polygon;
+Square square;
 Line line;
 
 int tmp = 0;
@@ -19,6 +22,7 @@ void display(void){
 	
 	line.draw();
 	polygon.draw();
+	square.draw();
 	//glFinish();
 	
 	
@@ -55,7 +59,8 @@ void reshape(GLint w, GLint h)
 
 void mouse(int button, int state, int ax, int ay){
 	if(button == GLUT_LEFT_BUTTON && state == GLUT_UP){
-		polygon.addPoint(ax, window_height - ay);
+		//polygon.addPoint(ax, window_height - ay);
+		square.addPoint(ax, window_height - ay);
 		display();
 	}
 	if(button == GLUT_RIGHT_BUTTON && state == GLUT_UP){
@@ -67,7 +72,8 @@ void mouse(int button, int state, int ax, int ay){
 
 /* Главный цикл приложения */
 int main(int argc, char *argv[]){
-    glutInit(&argc, argv);
+    /*
+	glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB);
     glutInitWindowSize(window_width, window_height);
 	glutInitWindowPosition(100,100);
@@ -79,6 +85,16 @@ int main(int argc, char *argv[]){
     glutReshapeFunc(reshape);
 
     glutMainLoop();
+	*/
 
+	// как установить бит?
+	short a = 0;
+	a |= (1 << 2);
+	std::cout << a << "\n";
+
+	a |= (0 << 2);
+	std::cout << a << "\n";
+
+	getchar();
 	return 0;
 }
