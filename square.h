@@ -1,16 +1,14 @@
 #pragma once
 #include "Line.h"
+#include "Parent.h"
 
-class Square{
+class Square : public Parent{
 public:
-	Square(void);
-	//void citio(Line line_in);
-	void addPoint(double x, double y);
-	void draw();
-	void citio(Line * line_in);
+	Square(void);	
+	virtual void citio(Line * line_in);
+	virtual void addPoint(double x, double y);
+	virtual void draw(void);
 private:
-	//int get_byte_mask(Point point_in);
-	//void recursive_find_points(Line line_in);
 	Point left_down;
 	Point right_top;
 	short flag;

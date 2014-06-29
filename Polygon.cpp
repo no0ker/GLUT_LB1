@@ -3,11 +3,6 @@
 #include <gl/glut.h>
 
 
-
-Polygon::Polygon(void)
-{
-}
-
 Polygon::~Polygon(void)
 {
 	std::vector<Point>::iterator i;
@@ -56,7 +51,7 @@ void Polygon::draw(void){
 
 
 
-int Polygon::CB(Line* line_in)
+void Polygon::citio(Line* line_in)
 /*--------------------------------------------------- V_CBclip
  *  Реализует алгоритм отсечения Кируса-Бека
  *  по произвольному выпуклому многоугольнику
@@ -72,9 +67,6 @@ int Polygon::CB(Line* line_in)
  * float *Wnormx, *Wnormy - массивы координат нормалей
  *                          к ребрам
  *
- * Возвращает:
- *  0 - отрезок не видим
- *  1 - отрезок видим
  */
 
 {  int   ii, visible, kw;
@@ -95,9 +87,7 @@ int Polygon::CB(Line* line_in)
    kw = points.size() - 1;
    visible = 1;
    CB_t0 = 0;  CB_t1 = 1;
-   //dx= *x1 - (xn= *x0);
    dx = line_in->point_to.x - line_in->point_from.x;
-   //dy= *y1 - (yn= *y0);
    dy = line_in->point_to.y - line_in->point_from.y;
    
    xn = line_in->point_from.x;
@@ -105,12 +95,10 @@ int Polygon::CB(Line* line_in)
 
    
    for (ii=0; ii<=kw; ++ii) {   /* Цикл по ребрам окна */
-      //Qx= xn - Windx[ii];       /* Положения относ ребра */
-      //Qy= yn - Windy[ii];
+      /* Положения относ ребра */
 	   Qx = xn - points[ii].x;
 	   Qy = yn - points[ii].y;
-      //Nx= Wnormx[ii];           /* Перепендикуляр к ребру */
-      //Ny= Wnormy[ii];
+      /* Перепендикуляр к ребру */
 	   Nx = points_normal[ii].x - points[ii].x;
 	   Ny = points_normal[ii].y - points[ii].y;
       Pn= dx*Nx + dy*Ny;        /* Скалярные произведения */
@@ -125,12 +113,14 @@ int Polygon::CB(Line* line_in)
          r= -Qn/Pn;
          if (Pn < 0) {          /* Поиск верхнего предела t */
             if (r < CB_t0) {
-				visible= 0;  break; 
+				visible= 0;  
+				break; 
 			}
             if (r < CB_t1) CB_t1= r;
          } else {               /* Поиск нижнего предела t */
             if (r > CB_t1) {
-				visible= 0;  break; 
+				visible= 0;  
+				break; 
 			}
             if (r > CB_t0) CB_t0= r;
          }
@@ -156,10 +146,7 @@ int Polygon::CB(Line* line_in)
 		line_in->cropped_point_to.y=0;
    }
 
-   return (visible);
 }  
-
-
 
 // если третья - то нужно считать все три!
 
