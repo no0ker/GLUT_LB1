@@ -25,6 +25,7 @@ void Line::set_point(int x, int y){
 		point_to.y = y;
 		flag = 1;
 	}
+
 }
 
 void Line::draw(){

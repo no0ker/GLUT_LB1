@@ -21,7 +21,7 @@ void display(void){
 	glClearColor(1,1,1,1);
 	
 	line.draw();
-	polygon.draw();
+	//polygon.draw();
 	square.draw();
 	//glFinish();
 	
@@ -73,7 +73,27 @@ void mouse(int button, int state, int ax, int ay){
 
 /* Главный цикл приложения */
 int main(int argc, char *argv[]){
-    
+	
+	/*
+	square.addPoint(319.0, 397.0);
+	square.addPoint(319.0, 397.0);
+	Line ltest;
+	ltest.set_point(257, 453);
+	ltest.set_point(595, 445);
+	square.citio(&ltest);
+	std::cout << "\n" << ltest.cropped_point_from.x <<  " : " << ltest.cropped_point_from.y
+		<< " ----->    " << ltest.cropped_point_to.x << " : " << ltest.cropped_point_to.y;
+	getchar();
+	return 0;
+	*/
+    /*
+	short a = 8;
+	short b = 4;
+	std::cout<< (a & b);
+	getchar();
+	return 0;
+	*/
+
 	glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB);
     glutInitWindowSize(window_width, window_height);
