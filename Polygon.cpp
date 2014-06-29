@@ -53,27 +53,7 @@ void Polygon::draw(void){
 
 }
 
-// неверно
-void Polygon::citio (Line line_in){
-	int p;
-	double dx = line_in.point_to.x - line_in.point_from.x;
-	double dy = line_in.point_to.y - line_in.point_from.y;
-	for(
-		std::vector<Point>::iterator i_points = points.begin(), 
-		i_points_normal = points_normal.begin();
-		i_points_normal < points_normal.end();
-		++i_points, ++i_points_normal
-	){	
-		double dNx = i_points_normal->x - i_points->x; 
-		double dNy = i_points_normal->y - i_points->y;
 
-		p = dx*dNx + dy*dNy;
-
-		if(p<0){
-		
-		}
-	}
-}
 
 
 int Polygon::CB(Line* line_in)

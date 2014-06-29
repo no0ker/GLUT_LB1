@@ -11,6 +11,8 @@ public:
 	Point point_to;
 	Point cropped_point_from;
 	Point cropped_point_to;
+	short flag_from;
+	short flag_to;
 private:
 	short flag;
 };

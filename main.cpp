@@ -65,14 +65,15 @@ void mouse(int button, int state, int ax, int ay){
 	}
 	if(button == GLUT_RIGHT_BUTTON && state == GLUT_UP){
 		line.set_point(ax, window_height - ay);
-		polygon.CB(&line);
+		//polygon.CB(&line);
+		square.citio(&line);
 		display();
 	}
 }
 
 /* Главный цикл приложения */
 int main(int argc, char *argv[]){
-    /*
+    
 	glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB);
     glutInitWindowSize(window_width, window_height);
@@ -85,16 +86,6 @@ int main(int argc, char *argv[]){
     glutReshapeFunc(reshape);
 
     glutMainLoop();
-	*/
-
-	// как установить бит?
-	short a = 0;
-	a |= (1 << 2);
-	std::cout << a << "\n";
-
-	a |= (0 << 2);
-	std::cout << a << "\n";
-
-	getchar();
+	
 	return 0;
 }

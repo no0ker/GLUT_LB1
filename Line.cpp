@@ -6,6 +6,8 @@ Line::Line(void)
 	flag = 0;
 	point_from.x = 0;
 	point_from.y = 0;
+	flag_from = 0;
+	flag_to = 0;
 }
 
 

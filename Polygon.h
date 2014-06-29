@@ -10,7 +10,6 @@ public:
 	~Polygon(void);
 	void addPoint(double x, double y);
 	void draw(void);
-	void citio(Line line_in);
 	int Polygon::CB(Line* line_in);
 	std::vector<Point> points;
 	std::vector<Point> points_normal;
