@@ -1,5 +1,5 @@
-#include <gl/glut.h>
 #include <stdlib.h>
+#include <gl/glut.h>
 #include <iostream>
 #include "Polygon.h"
 #include "Line.h"
@@ -17,16 +17,13 @@ Line line;
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(1,1,1,1);
-	
 	line.draw();
 	parent->draw();
-
 	glFinish();
 }
 
 /* Функция вызывается при изменении размеров окна */
-void reshape(GLint w, GLint h)
-{
+void reshape(GLint w, GLint h){
 	window_width = w;
 	window_height = h;
 
@@ -56,26 +53,6 @@ void mouse(int button, int state, int ax, int ay){
 }
 
 int main(int argc, char *argv[]){
-	
-	/*
-	square.addPoint(319.0, 397.0);
-	square.addPoint(319.0, 397.0);
-	Line ltest;
-	ltest.set_point(257, 453);
-	ltest.set_point(595, 445);
-	square.citio(&ltest);
-	std::cout << "\n" << ltest.cropped_point_from.x <<  " : " << ltest.cropped_point_from.y
-		<< " ----->    " << ltest.cropped_point_to.x << " : " << ltest.cropped_point_to.y;
-	getchar();
-	return 0;
-	*/
-    /*
-	short a = 8;
-	short b = 4;
-	std::cout<< (a & b);
-	getchar();
-	return 0;
-	*/
 	setlocale(LC_ALL, "Russian");
 
 	while(true){

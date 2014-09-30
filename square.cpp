@@ -1,7 +1,7 @@
 #include "Square.h"
 #include <cmath>
-#include <gl/glut.h>
 #include <iostream>
+#include <gl/glut.h>
 
 Square::Square(){
 	flag = 0;

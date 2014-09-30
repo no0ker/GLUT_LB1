@@ -31,7 +31,7 @@ void Polygon::draw(void){
 			glVertex2d(i->x, i->y);
 		}
 	glEnd();
-
+	/*
 	glBegin(GL_LINES);
 	for(
 		std::vector<Point>::iterator i_points = points.begin(), 
@@ -43,6 +43,7 @@ void Polygon::draw(void){
 		glVertex2f(i_points_normal->x, i_points_normal->y);
 	}
 	glEnd();
+	*/
 
 	
 
