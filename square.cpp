@@ -57,19 +57,10 @@ void Square::citio(Line * line_in){
 	reccur_citio(line_in, &result);
 	line_in->cropped_point_from = result.point_from;
 	line_in->cropped_point_to = result.point_to;
-	/*std::cout << "\n\n\n" << result.point_from.x <<":"<<result.point_from.y
-		<<"    ----->    "<<result.point_to.x<<":"<<result.point_to.y <<
-		"\n x = " << left_down.x << " - " << right_top.x << "\n y = "
-		<< left_down.y <<" - "<< right_top.y;*/
 }
 
 
 int Square::reccur_citio(Line * line_in, Line * line_result){
-	
-	/*std::cout << "\n in citio  " << line_in->point_from.x << ":" << line_in->point_from.y
-		<< "  - >   " << line_in->point_to.x << ":" << line_in->point_to.y;*/
-	
-	
 	
 	// функция "мечения" линии
 	add_flag_to_point(line_in);
@@ -100,7 +91,6 @@ int Square::reccur_citio(Line * line_in, Line * line_result){
 		(line_in->point_from.y - line_in->point_to.y) >= -1
 	)
 	{
-		//std::cout << "\t ignore!";
 		return 0;
 	}
 
@@ -175,10 +165,6 @@ int Square::reccur_citio(Line * line_in, Line * line_result){
 			line_result->point_to.y = two_result.point_from.y;
 		}
 
-
-
-		/*std::cout << "\n line result is  " << line_result->point_from.x << ":" << line_result->point_from.y
-			<< "  - >   " << line_result->point_to.x << ":" << line_result->point_to.y;*/
 		return 1;
 	}
 
@@ -187,8 +173,6 @@ int Square::reccur_citio(Line * line_in, Line * line_result){
 		line_result->point_from.y = first_result.point_from.y;
 		line_result->point_to.x = first_result.point_to.x;
 		line_result->point_to.y = first_result.point_to.y;
-		/*std::cout << "\n line result is  " << line_result->point_from.x << ":" << line_result->point_from.y
-			<< "  - >   " << line_result->point_to.x << ":" << line_result->point_to.y;*/
 		return 1;
 	}
 
@@ -197,8 +181,6 @@ int Square::reccur_citio(Line * line_in, Line * line_result){
 		line_result->point_from.y = two_result.point_from.y;
 		line_result->point_to.x = two_result.point_to.x;
 		line_result->point_to.y = two_result.point_to.y;
-		/*std::cout << "\n line result is  " << line_result->point_from.x << ":" << line_result->point_from.y
-			<< "  - >   " << line_result->point_to.x << ":" << line_result->point_to.y;*/
 		return 1;
 	}
 

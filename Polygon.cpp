@@ -31,7 +31,7 @@ void Polygon::draw(void){
 			glVertex2d(i->x, i->y);
 		}
 	glEnd();
-	/*
+	/* отрисовка нормалей - используется в отладке
 	glBegin(GL_LINES);
 	for(
 		std::vector<Point>::iterator i_points = points.begin(), 
@@ -53,20 +53,9 @@ void Polygon::draw(void){
 
 
 void Polygon::citio(Line* line_in)
-/*--------------------------------------------------- V_CBclip
+/*
  *  Реализует алгоритм отсечения Кируса-Бека
  *  по произвольному выпуклому многоугольнику
- *  с параметрическим заданием линий
- *
- * int  V_CBclip (float *x0, float *y0, float *x1, float *y1)
- *
- * Отсекает отрезок, заданный значениями координат его
- * точек (x0,y0), (x1,y1), по окну отсечения, заданному
- * глобальными скалярами:
- * int   Windn - количество вершин в окне отсечения
- * float *Windx, *Windy   - массивы X,Y координат вершин
- * float *Wnormx, *Wnormy - массивы координат нормалей
- *                          к ребрам
  *
  */
 
@@ -76,8 +65,6 @@ void Polygon::citio(Line* line_in)
    float Qx, Qy;                /* Положение относ ребра */
    float Nx, Ny;                /* Перпендикуляр к ребру */
    float Pn, Qn;                /**/
-
-   //kw= Windn - 1;               /* Ребер в окне */
    
    line_in->cropped_point_from.x = line_in->point_from.x;
    line_in->cropped_point_from.y = line_in->point_from.y;
@@ -148,8 +135,6 @@ void Polygon::citio(Line* line_in)
    }
 
 }  
-
-// если третья - то нужно считать все три!
 
 void Polygon::add_Normals(void){
 	if(points.size()>1){
